@@ -15,6 +15,6 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/yuezu1026/spring-boot-microservice-config
+          uri: https://github.com/yuezu1026/wyz-crm-config
           username: yuezu1026        # git仓库的账号
           password: wang123456      # git仓库的密码
