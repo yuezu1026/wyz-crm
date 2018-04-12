@@ -11,6 +11,9 @@
     <modules>
         <module>discovery</module>
 		<module>config</module>
+		<module>api-gateway</module>
+		<module>hystrix-dashboard</module>
+		<module>login-reg-service</module>
     </modules>
 
     <parent>
