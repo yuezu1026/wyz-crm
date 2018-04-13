@@ -11,3 +11,10 @@ eureka:
 ribbon:
   eureka:
     enabled: true
+
+spring:  
+  rabbitmq:
+    host: rb2mq.wangyz.club     
+    port: 5672
+    username: yuezu1026
+    password: wang123456
