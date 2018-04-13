@@ -14,6 +14,7 @@
 		<module>api-gateway</module>
 		<module>hystrix-dashboard</module>
 		<module>login-reg-service</module>
+		<module>svc-account</module>
     </modules>
 
     <parent>

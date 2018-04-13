@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: log-reg-service
+  cloud:
+    config:
+      profile: dev
+      label: master
+      uri: http://configserver:8888
+encrypt:
+  failOnError: false
