@@ -6,5 +6,12 @@ spring:
       profile: dev
       label: master
       uri: http://configserver:8888
+    bus: 
+       trace: 
+         enabled: true
 encrypt:
   failOnError: false
+  
+management:
+     security:
+         enabled: false
