@@ -1,5 +1,5 @@
 server:
-  port: 9006
+  port: 9008
 
 eureka:
   client:
@@ -18,3 +18,11 @@ spring:
     port: 5672
     username: guest
     password: guest
+  datasource:
+      driverClassName: com.mysql.jdbc.Driver
+      url:  jdbc:mysql://localhost:3306/saas_crm?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: 123456
+    
+mybatis:
+     type-aliases-package: service.reg.entity

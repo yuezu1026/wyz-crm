@@ -1,14 +1,24 @@
 spring:
   application:
-    name: log-reg-service
+      name: svc-log-reg
   cloud:
-    config:
-      profile: dev
-      label: master
-      uri: http://configserver:8888
-    bus: 
+      config:
+        discovery:
+          enabled: true #开启通过服务来访问Config Server的功能
+          service-id: configserver
+        profile: dev
+        label: master
+        uri: http://configserver:8888
+      bus: 
        trace: 
          enabled: true
+
+  rabbitmq:
+      host: localhost
+      port: 5672
+      username: guest
+      password: guest
+      
 encrypt:
   failOnError: false
   

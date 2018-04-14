@@ -17,10 +17,10 @@ spring:
         git:
           uri: https://github.com/yuezu1026/wyz-crm-config
           username: yuezu1026       # git仓库的账号
-          password: wang123456      # git仓库的密码
+          password: yue123456      # git仓库的密码
  
   rabbitmq:
-    host: rb2mq.wangyz.club     
+    host: localhost    
     port: 5672
-    username: yuezu1026
-    password: 123456
+    username: guest
+    password: guest

@@ -14,7 +14,7 @@ ribbon:
 
 spring:  
   rabbitmq:
-    host: rb2mq.wangyz.club     
+    host: localhost     
     port: 5672
-    username: yuezu1026
-    password: wang123456
+    username: guest
+    password: guest
