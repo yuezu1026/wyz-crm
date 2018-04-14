@@ -26,3 +26,19 @@ spring:
     
 mybatis:
      type-aliases-package: service.reg.entity
+     
+#pagehelper分页插件配置
+pagehelper:
+   helperDialect: mysql
+   reasonable: true
+   supportMethodsArguments: true
+   params: count=countSql
+
+#日志配置
+logging:
+  level: service=debug
+  level: org.springframework.web=debug
+  level: org.springframework.transaction=debug
+  level: org.mybatis=debug
+  
+debug: false

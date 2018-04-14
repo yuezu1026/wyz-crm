@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+
 import service.reg.entity.ResponseData;
 import service.reg.entity.UserEntity;
 import service.reg.mapper.UserMapper;
@@ -30,6 +33,18 @@ class RegisterController {
 		reponse.setSuccess(true);
 		return reponse;
 	}
+	
+	/**
+     * 分页查询
+     * @param pageNo 页号
+     * @param pageSize 每页显示记录数
+     * @return
+     */
+	@RequestMapping("/findByPage")
+    Page<UserEntity> findByPage(int pageNo, int pageSize){
+    	PageHelper.startPage(pageNo, pageSize);
+        return userMapper.findByPage();
+    }
 
 	@RequestMapping("/getUser")
 	public UserEntity getUser(Long id) {

@@ -1,9 +1,9 @@
 package service.reg.mapper;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -12,8 +12,8 @@ import org.apache.ibatis.annotations.Update;
 
 import service.reg.entity.UserEntity;
 import service.reg.enums.UserSexEnum;
+import com.github.pagehelper.Page;
 
-@Mapper
 public interface UserMapper {
 	
 	@Select("SELECT * FROM users")
@@ -52,5 +52,11 @@ public interface UserMapper {
 
 	@Delete("DELETE FROM users WHERE id =#{id}")
 	void delete(Long id);
+	
+	 /**
+     * 分页查询数据
+     * @return
+     */
+    Page<UserEntity> findByPage();
 
 }
