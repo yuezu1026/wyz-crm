@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import service.reg.entity.UserEntity;
@@ -14,6 +17,7 @@ import service.reg.mapper.UserMapper;
 
 @RestController
 @RefreshScope
+@RequestMapping("/login")
 class LoginController {
 
 	@Autowired
@@ -39,8 +43,8 @@ class LoginController {
 		return user;
 	}
 
-	@RequestMapping("/add")
-	public void save(UserEntity user) {
+	@RequestMapping(value = "/add", method = RequestMethod.POST,consumes="application/json") 
+	public void save(@RequestBody UserEntity user) {
 		userMapper.insert(user);
 	}
 
