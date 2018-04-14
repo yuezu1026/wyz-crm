@@ -20,3 +20,19 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://discovery:8761/eureka/
+ 
+#zuul:
+#  prefix: /api
+# routes:
+#    abc:
+#      path: /reg/**
+#      service-id:  svc-log-reg
+#      strip-prefix: true
+
+zuul:
+  prefix: /api
+  strip-prefix: true
+  ignoredServices: '*'
+  routes:
+    svc-log-reg: /reg/**
+

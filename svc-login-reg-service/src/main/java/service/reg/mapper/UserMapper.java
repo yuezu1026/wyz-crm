@@ -1,9 +1,6 @@
 package service.reg.mapper;
 
-
-
 import java.util.List;
-
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -32,17 +29,18 @@ public interface UserMapper {
 	})
 	UserEntity getOne(Long id);
 	
-	@Select("SELECT * FROM users WHERE userName = #{userName} AND passWord = #{passWord}")
+	@Select("SELECT * FROM users WHERE username = #{username} AND password = #{password}")
 	@Results({
 		@Result(property = "userSex",  column = "user_sex", javaType = UserSexEnum.class),
 		@Result(property = "nickName", column = "nick_name")
 	})
-	UserEntity checkAccount(@Param("userName")String userName,@Param("passWord")String passWord);
+	
+	UserEntity checkAccount(@Param("username")String userName,@Param("password")String passWord);
 
-	@Insert("INSERT INTO users(userName,passWord,user_sex) VALUES(#{userName}, #{passWord}, #{userSex})")
+	@Insert("INSERT INTO users(username,password,user_sex) VALUES(#{username}, #{password}, #{userSex})")
 	void insert(UserEntity user);
 
-	@Update("UPDATE users SET userName=#{userName},nick_name=#{nickName} WHERE id =#{id}")
+	@Update("UPDATE users SET userName=#{username},nick_name=#{nickName} WHERE id =#{id}")
 	void update(UserEntity user);
 
 	@Delete("DELETE FROM users WHERE id =#{id}")

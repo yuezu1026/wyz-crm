@@ -7,8 +7,8 @@ public class UserEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Long id;
-	private String userName;
-	private String passWord;
+	private String username;
+	private String password;
 	private UserSexEnum userSex;
 	private String nickName;
 
@@ -18,8 +18,8 @@ public class UserEntity implements Serializable {
 
 	public UserEntity(String userName, String passWord, UserSexEnum userSex) {
 		super();
-		this.passWord = passWord;
-		this.userName = userName;
+		this.password = passWord;
+		this.username = userName;
 		this.userSex = userSex;
 	}
 
@@ -31,20 +31,20 @@ public class UserEntity implements Serializable {
 		this.id = id;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getPassWord() {
-		return passWord;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPassWord(String passWord) {
-		this.passWord = passWord;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public UserSexEnum getUserSex() {
@@ -65,7 +65,7 @@ public class UserEntity implements Serializable {
 
 	@Override
 	public String toString() {
-		return "userName " + this.userName + ", pasword " + this.passWord + "sex " + userSex.name();
+		return "username " + this.username + ", pasword " + this.password + "sex " + userSex.name();
 	}
 
 }
