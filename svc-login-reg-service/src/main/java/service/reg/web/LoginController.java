@@ -40,6 +40,7 @@ class LoginController {
 		if(user != null && user.getUsername().equals("admin")) {
 			data="admin";
 		}
+		reponse.setSuccess(true);
 		reponse.setData(data);
 		return reponse;
 	}
