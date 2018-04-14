@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import service.reg.entity.ResponseData;
 import service.reg.entity.UserEntity;
 import service.reg.mapper.UserMapper;
 
@@ -22,9 +23,12 @@ class RegisterController {
 	private UserMapper userMapper;
 
 	@RequestMapping("/getUsers")
-	public List<UserEntity> getUsers() {
+	public ResponseData<List<UserEntity>> getUsers() {
+		ResponseData<List<UserEntity>> reponse = new ResponseData<List<UserEntity>>();
 		List<UserEntity> users = userMapper.getAll();
-		return users;
+		reponse.setData(users);
+		reponse.setSuccess(true);
+		return reponse;
 	}
 
 	@RequestMapping("/getUser")
@@ -34,8 +38,17 @@ class RegisterController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST,consumes="application/json") 
-	public void save(@RequestBody UserEntity user) {
-		userMapper.insert(user);
+	public ResponseData<String> save(@RequestBody UserEntity user) {
+		ResponseData<String> reponse = new ResponseData<String>();
+		UserEntity check = userMapper.checkUsername(user.getUsername());
+		if(check == null) {
+			userMapper.insert(user);
+			reponse.setData("ok");
+			reponse.setSuccess(true);
+		}else {
+			reponse.setSuccess(false);
+		}
+		return reponse;
 	}
 
 	@RequestMapping(value = "update")
