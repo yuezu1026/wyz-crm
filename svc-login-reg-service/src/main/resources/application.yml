@@ -36,9 +36,10 @@ pagehelper:
 
 #日志配置
 logging:
-  level: service=debug
-  level: org.springframework.web=debug
-  level: org.springframework.transaction=debug
-  level: org.mybatis=debug
+  level: 
+    service: debug
+    org.springframework.web: debug
+    org.springframework.transaction: debug
+    org.mybatis: debug
   
 debug: false

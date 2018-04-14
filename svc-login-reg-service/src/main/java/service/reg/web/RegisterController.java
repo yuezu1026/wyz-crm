@@ -40,8 +40,8 @@ class RegisterController {
      * @param pageSize 每页显示记录数
      * @return
      */
-	@RequestMapping("/findByPage")
-    Page<UserEntity> findByPage(int pageNo, int pageSize){
+	@RequestMapping("/findByPage/{pageNo}/{pageSize}")
+    Page<UserEntity> findByPage(@PathVariable("pageNo")int pageNo, @PathVariable("pageSize")int pageSize){
     	PageHelper.startPage(pageNo, pageSize);
         return userMapper.findByPage();
     }
