@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -31,12 +32,12 @@ public interface UserMapper {
 	})
 	UserEntity getOne(Long id);
 	
-	@Select("SELECT * FROM users WHERE userName = #{userName} and passWord = #{passWord}")
+	@Select("SELECT * FROM users WHERE userName = #{userName} AND passWord = #{passWord}")
 	@Results({
 		@Result(property = "userSex",  column = "user_sex", javaType = UserSexEnum.class),
 		@Result(property = "nickName", column = "nick_name")
 	})
-	UserEntity getOne(String userName,String passWord);
+	UserEntity checkAccount(@Param("userName")String userName,@Param("passWord")String passWord);
 
 	@Insert("INSERT INTO users(userName,passWord,user_sex) VALUES(#{userName}, #{passWord}, #{userSex})")
 	void insert(UserEntity user);

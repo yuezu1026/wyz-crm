@@ -28,7 +28,7 @@ class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST,consumes="application/json") 
 	public Boolean login(@RequestBody UserEntity user) {
-		user = userMapper.getOne(user.getUserName(),user.getPassWord());
+		user = userMapper.checkAccount(user.getUserName(),user.getPassWord());
 		if(user != null) {
 			return true;
 		}
