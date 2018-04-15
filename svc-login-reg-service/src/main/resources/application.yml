@@ -20,9 +20,10 @@ spring:
     password: guest
   datasource:
       driverClassName: com.mysql.jdbc.Driver
-      url:  jdbc:mysql://localhost:3306/saas_crm?useUnicode=true&characterEncoding=utf-8
+      #url:  jdbc:mysql://localhost:3306/saas_crm?useUnicode=true&characterEncoding=utf-8
+      url:  jdbc:mysql://47.104.192.186:3306/saas_crm?useUnicode=true&characterEncoding=utf-8
       username: root
-      password: 123456
+      password: wang123456
     
 mybatis:
      type-aliases-package: service.reg.entity
