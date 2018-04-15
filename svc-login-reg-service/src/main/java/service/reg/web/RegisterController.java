@@ -41,9 +41,13 @@ class RegisterController {
      * @return
      */
 	@RequestMapping("/findByPage/{pageNo}/{pageSize}")
-    Page<UserEntity> findByPage(@PathVariable("pageNo")int pageNo, @PathVariable("pageSize")int pageSize){
+	ResponseData<Page<UserEntity>> findByPage(@PathVariable("pageNo")int pageNo, @PathVariable("pageSize")int pageSize){
+		ResponseData<Page<UserEntity>> response = new ResponseData<Page<UserEntity>>();
     	PageHelper.startPage(pageNo, pageSize);
-        return userMapper.findByPage();
+    	response.setData(userMapper.findByPage()); 
+    	response.setCount(5);
+    	response.setSuccess(true);
+    	return response;
     }
 
 	@RequestMapping("/getUser")
