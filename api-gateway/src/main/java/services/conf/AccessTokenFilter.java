@@ -1,11 +1,10 @@
 package services.conf;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
-
-import java.util.Enumeration;
-
-import javax.servlet.http.HttpServletRequest;
 
 
 public class AccessTokenFilter extends ZuulFilter {
@@ -17,7 +16,7 @@ public class AccessTokenFilter extends ZuulFilter {
 
     @Override
     public int filterOrder() {
-        return 0;//优先级为0，数字越大，优先级越低
+        return 2;//优先级为0，数字越大，优先级越低
     }
 
     @Override
@@ -28,19 +27,21 @@ public class AccessTokenFilter extends ZuulFilter {
     @Override
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
+        
+       HttpServletResponse response = ctx.getResponse();
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        //ctx.setResponse(response);
+        
         HttpServletRequest request = ctx.getRequest();
         
-        Enumeration e1 = request.getHeaderNames();  
-        while (e1.hasMoreElements()) {  
-            String headerName = (String) e1.nextElement();  
-            String headValue = request.getHeader(headerName);  
-            System.out.println(headerName + "=" + headValue);  
-        }  
-        
-        String username = request.getParameter("token");
-        if (null != username && username.equals("123456")) {//暂时简单化测试
+        String	token = request.getHeader("token");  
+        token ="123456" ;
+        if (null != token && token.equals("123456")) {//暂时简单化测试
             ctx.setSendZuulResponse(true);// 对该请求进行路由
             ctx.setResponseStatusCode(200);
+        
             ctx.set("isSuccess", true);// 设值，可以在多个过滤器时使用
             return null;
         } else {
