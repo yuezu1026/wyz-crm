@@ -22,8 +22,8 @@ spring:
       driverClassName: com.mysql.jdbc.Driver
       #url:  jdbc:mysql://localhost:3306/saas_crm?useUnicode=true&characterEncoding=utf-8
       url:  jdbc:mysql://47.104.192.186:3306/saas_crm?useUnicode=true&characterEncoding=utf-8
-      username: root
-      password: wang123456
+      username: saas_crm
+      password: 123456
     
 mybatis:
      type-aliases-package: service.reg.entity
