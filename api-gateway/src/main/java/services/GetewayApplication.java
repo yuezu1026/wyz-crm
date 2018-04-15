@@ -8,7 +8,7 @@ import org.springframework.cloud.netflix.sidecar.EnableSidecar;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 
-import services.filter.AccessTokenFilter;
+import services.conf.AccessTokenFilter;
 
 @EnableSidecar
 @EnableZuulProxy

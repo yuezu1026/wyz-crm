@@ -1,12 +1,13 @@
-package services.filter;
+package services.conf;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * Created by Administrator on 2017/12/21.
- */
+
 public class AccessTokenFilter extends ZuulFilter {
 
     @Override
@@ -28,8 +29,16 @@ public class AccessTokenFilter extends ZuulFilter {
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
+        
+        Enumeration e1 = request.getHeaderNames();  
+        while (e1.hasMoreElements()) {  
+            String headerName = (String) e1.nextElement();  
+            String headValue = request.getHeader(headerName);  
+            System.out.println(headerName + "=" + headValue);  
+        }  
+        
         String username = request.getParameter("token");
-        if (null != username && username.equals("www.hanyahong.com")) {//暂时简单化测试
+        if (null != username && username.equals("123456")) {//暂时简单化测试
             ctx.setSendZuulResponse(true);// 对该请求进行路由
             ctx.setResponseStatusCode(200);
             ctx.set("isSuccess", true);// 设值，可以在多个过滤器时使用
