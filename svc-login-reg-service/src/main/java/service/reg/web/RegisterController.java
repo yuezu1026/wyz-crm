@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.pagehelper.ISelect;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 
@@ -45,7 +46,14 @@ class RegisterController {
 		ResponseData<Page<UserEntity>> response = new ResponseData<Page<UserEntity>>();
     	PageHelper.startPage(pageNo, pageSize);
     	response.setData(userMapper.findByPage()); 
-    	response.setCount(5);
+    	
+    	long count = PageHelper.count(new ISelect() {
+    	    @Override
+    	    public void doSelect() {
+    	    	userMapper.findByPage();
+    	    }
+    	});
+    	response.setCount(count);
     	response.setSuccess(true);
     	return response;
     }

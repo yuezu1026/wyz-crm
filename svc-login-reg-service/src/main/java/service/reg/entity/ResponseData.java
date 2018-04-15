@@ -6,7 +6,7 @@ public class ResponseData<T> {
 	
 	private boolean success;
 	
-	private Integer count;
+	private Long count;
 	
 	public T getData() {
 		return data;
@@ -24,11 +24,11 @@ public class ResponseData<T> {
 		this.success = success;
 	}
 
-	public Integer getCount() {
+	public Long getCount() {
 		return count;
 	}
 
-	public void setCount(Integer count) {
+	public void setCount(Long count) {
 		this.count = count;
 	}
 	
