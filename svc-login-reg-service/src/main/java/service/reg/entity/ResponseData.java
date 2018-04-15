@@ -6,6 +6,8 @@ public class ResponseData<T> {
 	
 	private boolean success;
 	
+	private Integer count;
+	
 	public T getData() {
 		return data;
 	}
@@ -20,6 +22,14 @@ public class ResponseData<T> {
 
 	public void setSuccess(boolean success) {
 		this.success = success;
+	}
+
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 	
 }
