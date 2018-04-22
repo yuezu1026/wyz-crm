@@ -15,21 +15,21 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 
 import service.reg.entity.ResponseData;
-import service.reg.entity.UserEntity;
-import service.reg.mapper.UserMapper;
+import service.reg.entity.TenantEntity;
+import service.reg.mapper.TenantMapper;
 
 @RestController
 @RefreshScope
-@RequestMapping("/regTenant")
+@RequestMapping("/regtenant")
 class RegisterTenantController {
 
 	@Autowired
-	private UserMapper userMapper;
+	private TenantMapper tenantMapper;
 
 	@RequestMapping("/getTenants")
-	public ResponseData<List<UserEntity>> getUsers() {
-		ResponseData<List<UserEntity>> reponse = new ResponseData<List<UserEntity>>();
-		List<UserEntity> users = userMapper.getAll();
+	public ResponseData<List<TenantEntity>> getUsers() {
+		ResponseData<List<TenantEntity>> reponse = new ResponseData<List<TenantEntity>>();
+		List<TenantEntity> users = tenantMapper.getAll();
 		reponse.setData(users);
 		reponse.setSuccess(true);
 		return reponse;
@@ -42,15 +42,15 @@ class RegisterTenantController {
      * @return
      */
 	@RequestMapping("/findTenantByPage/{pageNo}/{pageSize}")
-	ResponseData<Page<UserEntity>> findByPage(@PathVariable("pageNo")int pageNo, @PathVariable("pageSize")int pageSize){
-		ResponseData<Page<UserEntity>> response = new ResponseData<Page<UserEntity>>();
+	ResponseData<Page<TenantEntity>> findByPage(@PathVariable("pageNo")int pageNo, @PathVariable("pageSize")int pageSize){
+		ResponseData<Page<TenantEntity>> response = new ResponseData<Page<TenantEntity>>();
     	PageHelper.startPage(pageNo, pageSize);
-    	response.setData(userMapper.findByPage()); 
+    	response.setData(tenantMapper.findByPage()); 
     	
     	long count = PageHelper.count(new ISelect() {
     	    @Override
     	    public void doSelect() {
-    	    	userMapper.findByPage();
+    	    	tenantMapper.findByPage();
     	    }
     	});
     	response.setCount(count);
@@ -59,17 +59,17 @@ class RegisterTenantController {
     }
 
 	@RequestMapping("/getTenant")
-	public UserEntity getUser(Long id) {
-		UserEntity user = userMapper.getOne(id);
+	public TenantEntity getUser(Long id) {
+		TenantEntity user = tenantMapper.getOne(id);
 		return user;
 	}
 
 	@RequestMapping(value = "/addTenant", method = RequestMethod.POST,consumes="application/json") 
-	public ResponseData<String> save(@RequestBody UserEntity user) {
+	public ResponseData<String> save(@RequestBody TenantEntity user) {
 		ResponseData<String> reponse = new ResponseData<String>();
-		UserEntity check = userMapper.checkUsername(user.getUsername());
+		TenantEntity check = tenantMapper.checkUsername(user.getTenantAccount());
 		if(check == null) {
-			userMapper.insert(user);
+			tenantMapper.insert(user);
 			reponse.setData("ok");
 			reponse.setSuccess(true);
 		}else {
@@ -79,12 +79,12 @@ class RegisterTenantController {
 	}
 
 	@RequestMapping(value = "updateTenant")
-	public void update(UserEntity user) {
-		userMapper.update(user);
+	public void update(TenantEntity user) {
+		tenantMapper.update(user);
 	}
 
 	@RequestMapping(value = "/deleteTenant/{id}")
 	public void delete(@PathVariable("id") Long id) {
-		userMapper.delete(id);
+		tenantMapper.delete(id);
 	}
 }
