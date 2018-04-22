@@ -2,6 +2,8 @@ package service.reg.entity;
 
 import java.io.Serializable;
 
+import service.reg.enums.TenantSexEnum;
+
 public class TenantEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -10,7 +12,7 @@ public class TenantEntity implements Serializable {
 	private String tenantAccount;
 	private String tenantPassword;
 	private String tenantName;
-	private String tenantSex;
+	private TenantSexEnum tenantSex;
 	private String tenantBirthday;
 	private String tel;
 	private String email;
@@ -47,12 +49,7 @@ public class TenantEntity implements Serializable {
 	public void setTenantName(String tenantName) {
 		this.tenantName = tenantName;
 	}
-	public String getTenantSex() {
-		return tenantSex;
-	}
-	public void setTenantSex(String tenantSex) {
-		this.tenantSex = tenantSex;
-	}
+
 	public String getTenantBirthday() {
 		return tenantBirthday;
 	}
@@ -82,6 +79,12 @@ public class TenantEntity implements Serializable {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public TenantSexEnum getTenantSex() {
+		return tenantSex;
+	}
+	public void setTenantSex(TenantSexEnum tenantSex) {
+		this.tenantSex = tenantSex;
 	}
 	public String getBusinessTypeId() {
 		return businessTypeId;

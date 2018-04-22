@@ -27,7 +27,7 @@ class RegisterTenantController {
 	private TenantMapper tenantMapper;
 
 	@RequestMapping("/getTenants")
-	public ResponseData<List<TenantEntity>> getUsers() {
+	public ResponseData<List<TenantEntity>> getTenants() {
 		ResponseData<List<TenantEntity>> reponse = new ResponseData<List<TenantEntity>>();
 		List<TenantEntity> users = tenantMapper.getAll();
 		reponse.setData(users);
@@ -42,7 +42,7 @@ class RegisterTenantController {
      * @return
      */
 	@RequestMapping("/findTenantByPage/{pageNo}/{pageSize}")
-	ResponseData<Page<TenantEntity>> findByPage(@PathVariable("pageNo")int pageNo, @PathVariable("pageSize")int pageSize){
+	ResponseData<Page<TenantEntity>> findTenantByPage(@PathVariable("pageNo")int pageNo, @PathVariable("pageSize")int pageSize){
 		ResponseData<Page<TenantEntity>> response = new ResponseData<Page<TenantEntity>>();
     	PageHelper.startPage(pageNo, pageSize);
     	response.setData(tenantMapper.findByPage()); 
@@ -65,7 +65,7 @@ class RegisterTenantController {
 	}
 
 	@RequestMapping(value = "/addTenant", method = RequestMethod.POST,consumes="application/json") 
-	public ResponseData<String> save(@RequestBody TenantEntity user) {
+	public ResponseData<String> addTenant(@RequestBody TenantEntity user) {
 		ResponseData<String> reponse = new ResponseData<String>();
 		TenantEntity check = tenantMapper.checkUsername(user.getTenantAccount());
 		if(check == null) {
@@ -79,12 +79,12 @@ class RegisterTenantController {
 	}
 
 	@RequestMapping(value = "updateTenant")
-	public void update(TenantEntity user) {
+	public void updateTenant(TenantEntity user) {
 		tenantMapper.update(user);
 	}
 
 	@RequestMapping(value = "/deleteTenant/{id}")
-	public void delete(@PathVariable("id") Long id) {
+	public void deleteTenant(@PathVariable("id") Long id) {
 		tenantMapper.delete(id);
 	}
 }

@@ -20,7 +20,19 @@ public interface TenantMapper {
 	
 	@Select("SELECT * FROM tenant")
 	@Results({
-		@Result(property = "tenantSex",  column = "tenant_sex", javaType = TenantSexEnum.class)
+		@Result(property = "tenantId",  column = "tenant_id", javaType = String.class),
+		@Result(property = "tenantAccount",  column = "tenant_account", javaType = String.class),
+		@Result(property = "tenantPassword",  column = "tenant_password", javaType = String.class),
+		@Result(property = "tenantName",  column = "tenant_name", javaType = String.class),
+		@Result(property = "tenantSex",  column = "tenant_sex", javaType = TenantSexEnum.class),
+		@Result(property = "tenantBirthday",  column = "tenant_birthday", javaType = String.class),
+		@Result(property = "tel",  column = "tel", javaType = String.class),
+		@Result(property = "email",  column = "email", javaType = String.class),
+		@Result(property = "company",  column = "company", javaType = String.class),
+		@Result(property = "address",  column = "address", javaType = String.class),
+		@Result(property = "businessTypeId",  column = "business_type_id", javaType = String.class),
+		@Result(property = "parentTenantId",  column = "parent_tenant_id", javaType = String.class),
+		@Result(property = "createdBy",  column = "created_by", javaType = String.class),
 	})
 	List<TenantEntity> getAll();
 	
